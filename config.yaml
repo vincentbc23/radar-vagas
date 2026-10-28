@@ -1,0 +1,160 @@
+# ============================================================
+#  Radar de Vagas — configuração
+#  Edite à vontade; o script relê este arquivo a cada execução.
+#  Todas as comparações ignoram acentos e maiúsculas.
+#  Termos casam como palavra inteira ("ia" não casa com "mídia");
+#  termine com * para casar prefixo ("estagi*" -> estágio, estagiário).
+# ============================================================
+
+# Termos pesquisados no portal da Gupy (cada um vira uma busca).
+# A Gupy exige termo; quanto mais variado, maior a cobertura.
+gupy_termos:
+  - estágio dados
+  - estágio ciência de dados
+  - estágio inteligência artificial
+  - estágio machine learning
+  - estágio analytics
+  - estágio BI
+  - estágio engenharia de dados
+  - estágio IA
+  - estagiário dados
+  - programa de estágio
+  - dados júnior
+  - analista de dados
+  - cientista de dados
+  - engenheiro de dados
+  - machine learning
+  - inteligência artificial
+  - IA generativa
+  - trainee dados
+
+# Empresas que usam Greenhouse / Lever (opcional).
+# O identificador é o que aparece na URL da página de vagas:
+#   boards.greenhouse.io/<identificador>   |   jobs.lever.co/<identificador>
+greenhouse: []
+#  - nubank
+lever: []
+#  - exemplo
+
+# ---------- Filtros ----------
+
+# O TÍTULO precisa bater com pelo menos um destes (área).
+area:
+  - dados
+  - data
+  - ia
+  - ai
+  - inteligencia artificial
+  - artificial intelligence
+  - machine learning
+  - ml
+  - mlops
+  - deep learning
+  - analytics
+  - analitic*
+  - bi
+  - business intelligence
+  - cientista
+  - ciencia de dados
+  - data science
+  - llm
+  - genai
+  - gen ai
+  - ia generativa
+  - generative ai
+  - nlp
+  - visao computacional
+  - computer vision
+  - estatistic*
+
+# Nível: a vaga passa se o TIPO na Gupy for estágio/trainee
+# OU se o título contiver um destes termos.
+nivel:
+  - estagi*
+  - intern
+  - internship
+  - junior
+  - jr
+  - trainee
+  - entry level
+
+# Programas de estágio/trainee com título genérico ("Programa de Estágio
+# 2027") não citam a área no título. Com isto ligado, eles passam se a
+# DESCRIÇÃO mencionar algum termo de área — e chegam marcados como
+# "programa geral" para você conferir.
+aceitar_programas_genericos: true
+termos_programa:
+  - programa de estagio
+  - programa de trainee
+  - programa trainee
+  - trainee 2027
+  - estagio 2027
+  - estagio 2026
+# Termos procurados na descrição desses programas (precisa de pelo
+# menos `min_termos_descricao` termos diferentes).
+area_descricao:
+  - ciencia de dados
+  - analise de dados
+  - engenharia de dados
+  - machine learning
+  - inteligencia artificial
+  - data science
+  - analytics
+  - power bi
+  - python
+  - sql
+  - estatistic*
+  - modelag*
+  - genai
+  - llm
+min_termos_descricao: 2
+
+# Se aparecer no título, a vaga é descartada.
+excluir:
+  - senior
+  - sr
+  - pleno
+  - pl
+  - especialista
+  - lead
+  - lider
+  - coordenador*
+  - gerente
+  - manager
+  - head
+  - staff
+  - principal
+  - ii
+  - iii
+  - iv
+  - banco de talentos
+  - jovem aprendiz
+  - aprendiz
+  - pcd exclusiv*
+
+# Modalidade:
+#  - remoto: sempre aceita
+#  - híbrido/presencial: só se "cidade, estado" da vaga contiver um item
+#    da lista abaixo (deixe a lista vazia para aceitar qualquer lugar).
+#    Cidade + estado juntos evitam homônimos (ex.: Lavras da Mangabeira/CE).
+aceitar_remoto: true
+aceitar_hibrido: true
+aceitar_presencial: true
+locais_presencial_hibrido:
+  - Lavras, Minas Gerais
+  - Lavras, MG
+
+# Ignora vagas publicadas há mais de N dias.
+max_dias_publicacao: 10
+
+# ---------- Envio ----------
+
+# Máximo de vagas notificadas por execução (o resto entra num resumo).
+max_por_execucao: 25
+
+# Na PRIMEIRA execução (sem histórico), só marca tudo como visto e
+# manda um resumo — evita uma enxurrada de mensagens.
+primeira_execucao_silenciosa: true
+
+# Por quantos dias lembrar de uma vaga já vista.
+dias_memoria: 90
